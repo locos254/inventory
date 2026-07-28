@@ -1,12 +1,29 @@
-import { useGetMe } from "@workspace/api-client-react";
+import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { useEffect } from "react";
 import { Loader2 } from "lucide-react";
 
 export function AuthGuard({ children }: { children: React.ReactNode }) {
-  const [location, setLocation] = useLocation();
-  const { data: user, isLoading, isError } = useGetMe({ 
-    query: { retry: false, queryKey: ["/api/auth/me"] } 
+  const [, setLocation] = useLocation();
+
+  const {
+    data: user,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["/api/auth/me"],
+    queryFn: async () => {
+      const res = await fetch("/api/auth/me", {
+        credentials: "include",
+      });
+
+      if (!res.ok) {
+        throw new Error("Not authenticated");
+      }
+
+      return res.json();
+    },
+    retry: false,
   });
 
   useEffect(() => {
