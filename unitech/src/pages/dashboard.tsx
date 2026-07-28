@@ -1,4 +1,4 @@
-import { useGetDashboardStats, useGetRecentProducts, useGetRecentSales } from "@workspace/api-client-react";
+import { useGetDashboardStats, useGetRecentProducts, useGetRecentSales } from "@/lib/api";
 import { Layout } from "@/components/layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
