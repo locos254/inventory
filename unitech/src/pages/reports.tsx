@@ -6,7 +6,7 @@ import {
   useGetInventoryReport,
   useGetLowStockReport,
   useGetOutOfStockReport
-} from "@workspace/api-client-react";
+} from "@/lib/api";
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
