@@ -11,7 +11,7 @@ import {
   useDeleteModel,
   Brand,
   PhoneModel
-} from "@workspace/api-client-react";
+} from "@/lib/api";
 import { useQueryClient } from "@tanstack/react-query";
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
