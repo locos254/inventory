@@ -203,3 +203,54 @@ export function useGetModels(
     ...options,
   });
 }
+
+/* =========================================================
+   Dashboard
+========================================================= */
+
+export interface DashboardStats {
+  totalProducts: number;
+  totalCategories: number;
+  totalStock: number;
+  todaySales: number;
+  monthSales: number;
+  lowStockCount: number;
+  outOfStockCount: number;
+}
+
+export interface RecentProduct {
+  id: number;
+  name: string;
+  categoryName?: string | null;
+  sellingPrice: number;
+  quantity: number;
+  status: "in_stock" | "low_stock" | "out_of_stock";
+}
+
+export interface RecentSale {
+  id: number;
+  saleDate: string;
+  itemCount: number;
+  totalAmount: number;
+}
+
+export function useGetDashboardStats() {
+  return useQuery<DashboardStats>({
+    queryKey: ["/api/dashboard/stats"],
+    queryFn: () => request("/api/dashboard/stats"),
+  });
+}
+
+export function useGetRecentProducts() {
+  return useQuery<RecentProduct[]>({
+    queryKey: ["/api/dashboard/recent-products"],
+    queryFn: () => request("/api/dashboard/recent-products"),
+  });
+}
+
+export function useGetRecentSales() {
+  return useQuery<RecentSale[]>({
+    queryKey: ["/api/dashboard/recent-sales"],
+    queryFn: () => request("/api/dashboard/recent-sales"),
+  });
+}
