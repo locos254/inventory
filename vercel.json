@@ -1,4 +1,7 @@
 {
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm --filter @workspace/api-client-react build && pnpm --filter unitech build",
+  "outputDirectory": "unitech/dist",
   "rewrites": [
     {
       "source": "/(.*)",
